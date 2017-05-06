@@ -2,6 +2,7 @@ namespace MVC5Course.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
 
     [MetadataType(typeof(ProductMetaData))]
@@ -18,10 +19,12 @@ namespace MVC5Course.Models
         [Required(ErrorMessage = "請輸入商品名稱")]
         [MinLength(3), MaxLength(30)]
         [RegularExpression("(.+)-(.+)", ErrorMessage = "商品名稱格式錯誤")]
+        [DisplayName("商品名稱")]
         public string ProductName { get; set; }
         [Required]
         [Range(0, 9999, ErrorMessage = "請設定正確的商品價格範圍")]
         [DisplayFormat(DataFormatString =("{0:0}"),ApplyFormatInEditMode =true)]
+        [DisplayName("商品價錢")]
         public Nullable<decimal> Price { get; set; }
         [Required]
         public Nullable<bool> Active { get; set; }
