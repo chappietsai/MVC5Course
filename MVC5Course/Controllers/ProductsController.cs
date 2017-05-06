@@ -55,7 +55,6 @@ namespace MVC5Course.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
             return View(product);
         }
 
