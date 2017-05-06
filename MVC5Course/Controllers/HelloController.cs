@@ -11,7 +11,7 @@ namespace MVC5Course.Controllers
         // GET: Hello
         public ActionResult Index()
         {
-            return View();
+            return View();//view
         }
     }
 }
