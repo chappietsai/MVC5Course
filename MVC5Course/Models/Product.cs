@@ -23,8 +23,11 @@ namespace MVC5Course.Models
         [Required(ErrorMessage = "please input ProductId")]
         public int ProductId { get; set; }
         [Required(ErrorMessage = "please input ProductName")]
+        [MinLength(3),MaxLength(10)]
+        [RegularExpression("(.+)-(.+)",ErrorMessage ="®æ¦¡¦³»~")]
         public string ProductName { get; set; }
         [Required(ErrorMessage = "please input Price")]
+        [Range(0,9999,ErrorMessage ="Error price")]
         public Nullable<decimal> Price { get; set; }
         [Required(ErrorMessage = "please input Active")]
         public Nullable<bool> Active { get; set; }
