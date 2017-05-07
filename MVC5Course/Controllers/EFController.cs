@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using MVC5Course.Models;
+using System.Data.Entity.Validation;
 
 namespace MVC5Course.Controllers
 {
@@ -14,7 +15,7 @@ namespace MVC5Course.Controllers
         public ActionResult Index()
         {
             var all = db.Product.AsQueryable();//.AsQueryable() 不會立刻執行 延遲執行
-            var data = all.Where(p => p.Active == true && p.ProductName.Contains("Black"))
+            var data = all.Where(p => p.IsDeleted == false && p.Active == true && p.ProductName.Contains("Black"))
                         .OrderByDescending(p => p.ProductId);
 
 
@@ -71,15 +72,24 @@ namespace MVC5Course.Controllers
 
             var item= db.Product.Find(id);
 
-            foreach (var temp in item.OrderLine.ToList())
-            {
-                db.OrderLine.Remove(temp);
-            }
+            //foreach (var temp in item.OrderLine.ToList())
+            //{
+            //    db.OrderLine.Remove(temp);
+            //}
 
             //db.OrderLine.RemoveRange(item.OrderLine); //與上方foreach 同效果
-
-            db.Product.Remove(item);
-            db.SaveChanges();
+            //db.Product.Remove(item);
+            item.IsDeleted = true;
+       
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (DbEntityValidationException ex)
+            {
+                throw ex;
+            }
+            
 
             return RedirectToAction("Index");
         }

@@ -30,8 +30,8 @@ namespace MVC5Course.Models
 
         [StringLength(80, ErrorMessage = "欄位長度不得大於 80 個字元")]
         [Required(ErrorMessage = "請輸入商品名稱")]
-        [MinLength(3), MaxLength(30)]
-        [RegularExpression("(.+)-(.+)", ErrorMessage = "商品名稱格式錯誤")]
+        //[MinLength(3), MaxLength(30)]
+       // [RegularExpression("(.+)-(.+)", ErrorMessage = "商品名稱格式錯誤")]
         [DisplayName("商品名稱")]
         public string ProductName { get; set; }
         [Required]
@@ -42,7 +42,7 @@ namespace MVC5Course.Models
         [Required]
         public Nullable<bool> Active { get; set; }
         [Required]
-        [Range(0, 100, ErrorMessage = "請設定正確的商品庫存數量")]
+        [Range(0, 9999, ErrorMessage = "請設定正確的商品庫存數量")]
         public Nullable<decimal> Stock { get; set; }
 
         public virtual ICollection<OrderLine> OrderLine { get; set; }
