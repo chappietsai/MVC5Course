@@ -15,7 +15,7 @@ namespace MVC5Course.Controllers
         public ActionResult Index()
         {
             var all = db.Product.AsQueryable();//.AsQueryable() 不會立刻執行 延遲執行
-            var data = all.Where(p => p.Is刪除 == false && p.Active == true && p.ProductName.Contains("Black"))
+            var data = all.Where(p => p.Is刪除 == false && p.Active == true )
                         .OrderByDescending(p => p.ProductId);
 
 

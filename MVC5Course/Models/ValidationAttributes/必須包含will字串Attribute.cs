@@ -18,7 +18,7 @@ namespace MVC5Course.Models.ValidationAttributes
         {
 
             var str = (string)value;
-            return str.Contains("will");
+            return str.Contains("Will");
         }
 
     }
