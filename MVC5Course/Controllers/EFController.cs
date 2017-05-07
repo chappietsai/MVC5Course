@@ -67,7 +67,17 @@ namespace MVC5Course.Controllers
 
         public ActionResult Delete(int id)
         {
+
+
             var item= db.Product.Find(id);
+
+            foreach (var temp in item.OrderLine.ToList())
+            {
+                db.OrderLine.Remove(temp);
+            }
+
+            //db.OrderLine.RemoveRange(item.OrderLine); //與上方foreach 同效果
+
             db.Product.Remove(item);
             db.SaveChanges();
 
