@@ -13,19 +13,19 @@ namespace MVC5Course.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class FabricsEntities1 : DbContext //entity framework 
+    public partial class FabricsEntities1 : DbContext
     {
         public FabricsEntities1()
-            : base("name=FabricsEntities1")// connertion string 
+            : base("name=FabricsEntities1")
         {
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            throw new UnintentionalCodeFirstException();//code firt only
+            throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Client> Client { get; set; }//virtual 拿掉 沒有延遲載入
+        public virtual DbSet<Client> Client { get; set; }
         public virtual DbSet<Occupation> Occupation { get; set; }
         public virtual DbSet<Order> Order { get; set; }
         public virtual DbSet<OrderLine> OrderLine { get; set; }
