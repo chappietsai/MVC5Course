@@ -94,5 +94,23 @@ namespace MVC5Course.Controllers
             return RedirectToAction("Index");
         }
 
-    }
+
+        public ActionResult Details(int id)
+        {
+
+            var data =db.Database.SqlQuery<Product>("select * from dbo.Product where ProductId=@p0 ",id).FirstOrDefault();
+
+            return View(data);
+        }
+
+
+        //Will 有新增Removeall function ...
+        public void RemoveAll()
+       {
+           //db.Product.RemoveRange(db.Product);
+           //db.SaveChanges();
+
+           db.Database.ExecuteSqlCommand("DELETE FROM dbo.Product");
+       }
+}
 }
