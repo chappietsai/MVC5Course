@@ -13,7 +13,7 @@ namespace MVC5Course.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class FabricsEntities1 : DbContext
+    public partial class FabricsEntities1 : DbContext //entity framework 
     {
         public FabricsEntities1()
             : base("name=FabricsEntities1")// connertion string 
@@ -25,7 +25,7 @@ namespace MVC5Course.Models
             throw new UnintentionalCodeFirstException();//code firt only
         }
     
-        public virtual DbSet<Client> Client { get; set; }
+        public virtual DbSet<Client> Client { get; set; }//virtual 拿掉 沒有延遲載入
         public virtual DbSet<Occupation> Occupation { get; set; }
         public virtual DbSet<Order> Order { get; set; }
         public virtual DbSet<OrderLine> OrderLine { get; set; }
