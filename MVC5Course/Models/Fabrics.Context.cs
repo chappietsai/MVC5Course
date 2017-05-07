@@ -16,13 +16,13 @@ namespace MVC5Course.Models
     public partial class FabricsEntities1 : DbContext
     {
         public FabricsEntities1()
-            : base("name=FabricsEntities1")
+            : base("name=FabricsEntities1")// connertion string 
         {
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            throw new UnintentionalCodeFirstException();
+            throw new UnintentionalCodeFirstException();//code firt only
         }
     
         public virtual DbSet<Client> Client { get; set; }
