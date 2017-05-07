@@ -12,7 +12,13 @@ namespace MVC5Course.Models
 
         public int 訂單數量
         {
-            get { return this.OrderLine.Count; }
+            get {
+
+                return this.OrderLine.Count; //會取出所有值 才開始計算 故 效能不好
+
+             ///Will 有較好的寫法
+
+            }
         }
 
     }
