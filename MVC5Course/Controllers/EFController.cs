@@ -15,7 +15,7 @@ namespace MVC5Course.Controllers
         public ActionResult Index()
         {
             var all = db.Product.AsQueryable();//.AsQueryable() 不會立刻執行 延遲執行
-            var data = all.Where(p => p.IsDeleted == false && p.Active == true && p.ProductName.Contains("Black"))
+            var data = all.Where(p => p.Is刪除 == false && p.Active == true && p.ProductName.Contains("Black"))
                         .OrderByDescending(p => p.ProductId);
 
 
@@ -79,7 +79,7 @@ namespace MVC5Course.Controllers
 
             //db.OrderLine.RemoveRange(item.OrderLine); //與上方foreach 同效果
             //db.Product.Remove(item);
-            item.IsDeleted = true;
+            item.Is刪除 = true;
        
             try
             {
