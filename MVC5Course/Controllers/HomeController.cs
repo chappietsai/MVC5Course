@@ -8,6 +8,10 @@ namespace MVC5Course.Controllers
 {
     public class HomeController : Controller
     {
+            /// <summary>
+            /// 我要重新開始
+            /// </summary>
+            /// <returns>Start</returns>
         public ActionResult Index()
         {
             return View();
