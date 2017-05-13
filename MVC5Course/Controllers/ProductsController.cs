@@ -16,18 +16,17 @@ namespace MVC5Course.Controllers
 
         ProductRepository repo = RepositoryHelper.GetProductRepository();
 
-        private FabricsEntities1 db = new FabricsEntities1();
+        //private FabricsEntities1 db = new FabricsEntities1();
 
         // GET: Products
         public ActionResult Index(bool Active = true)
         {
 
-            //var repo = new ProductRepository();
-            //repo.UnitOfWork = new IUnitOfWork();-->error
+            //var repository = new ProductRepository();
+            //repository.UnitOfWork = GetUnitOfWork();
+            //ProductRepository repo = RepositoryHelper.GetProductRepository();如同上面兩行
 
-            //ProductRepository repo = RepositoryHelper.GetProductRepository();
-
-            var data = repo.All().Where(p => p.Active.HasValue && p.Active.Value == Active).OrderByDescending(p => p.ProductId).Take(10);
+            var data = repo.All();
             //var data = db.Product.Where(p => p.Active.HasValue && p.Active.Value == Active).OrderByDescending(p => p.ProductId).Take(10);
             return View(data);
         }
@@ -63,8 +62,10 @@ namespace MVC5Course.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Product.Add(product);
-                db.SaveChanges();
+                //db.Product.Add(product);
+                //db.SaveChanges();
+                repo.Add(product);
+                repo.UnitOfWork.Commit();
                 return RedirectToAction("Index");
             }
             return View(product);
@@ -77,7 +78,8 @@ namespace MVC5Course.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Product product = db.Product.Find(id);
+            //Product product = db.Product.Find(id);
+            Product product = repo.Get單筆資料ByProductId(id.Value);
             if (product == null)
             {
                 return HttpNotFound();
@@ -94,8 +96,10 @@ namespace MVC5Course.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(product).State = EntityState.Modified;
-                db.SaveChanges();
+                //db.Entry(product).State = EntityState.Modified;
+                //db.SaveChanges();
+                repo.Update(product);
+                repo.UnitOfWork.Commit();
                 return RedirectToAction("Index");
             }
             return View(product);
@@ -108,7 +112,8 @@ namespace MVC5Course.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Product product = db.Product.Find(id);
+            //Product product = db.Product.Find(id);
+            Product product = repo.Get單筆資料ByProductId(id.Value);
             if (product == null)
             {
                 return HttpNotFound();
@@ -121,34 +126,47 @@ namespace MVC5Course.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Product product = db.Product.Find(id);
-            db.Product.Remove(product);
-            db.SaveChanges();
+            //Product product = db.Product.Find(id);
+            //db.Product.Remove(product);
+            //db.SaveChanges();
+            Product product = repo.Get單筆資料ByProductId(id);
+            repo.Delete(product);
+            repo.UnitOfWork.Commit();
             return RedirectToAction("Index");
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+        //protected override void Dispose(bool disposing)
+        //{
+        //    if (disposing)
+        //    {
+        //        db.Dispose();
+        //    }
+        //    base.Dispose(disposing);
+        //}
 
 
 
         public ActionResult ListProducts()
         {
-
-            var data = db.Product.Where(p => p.Active == true).Select(p => new productLiteVM
-            {
-                ProductId=  p.ProductId,
-                ProductName=  p.ProductName,
-                Price=  p.Price,
-                Stock =  p.Stock
-            }).Take(10);
+            var data = repo.GetProduct列表頁所有資料(Active :true)
+               .Select(p => new productLiteVM
+               {
+                   ProductId = p.ProductId,
+                   ProductName = p.ProductName,
+                   Price = p.Price,
+                   Stock = p.Stock
+               });
             return View(data);
+
+            //var data = db.Product.Where(p => p.Active == true)
+            //    .Select(p => new productLiteVM
+            //{
+            //    ProductId=  p.ProductId,
+            //    ProductName=  p.ProductName,
+            //    Price=  p.Price,
+            //    Stock =  p.Stock
+            //}).Take(10);
+            //return View(data);
         }
 
         public ActionResult CreateProduct()//create 表單
