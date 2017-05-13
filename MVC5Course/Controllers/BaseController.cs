@@ -20,7 +20,7 @@ namespace MVC5Course.Controllers
 
         //protected override void HandleUnknownAction(string actionName)
         //{
-        //    //導到妳要的首頁
+        //    //導到妳要的頁面
         //}
     }
 }
