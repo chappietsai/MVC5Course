@@ -150,17 +150,37 @@ namespace MVC5Course.Controllers
 
 
 
-        public ActionResult ListProducts()
+        public ActionResult ListProducts(MultiSearchVM _MultiSearchVM)//只要前後端名稱一樣(q) 就是ModelBinding-->有modelbinding 就有model state
         {
-            var data = repo.GetProduct列表頁所有資料(Active :true)
-               .Select(p => new productLiteVM
-               {
-                   ProductId = p.ProductId,
-                   ProductName = p.ProductName,
-                   Price = p.Price,
-                   Stock = p.Stock
-               });
-            return View(data);
+
+            var data = repo.GetProduct列表頁所有資料(true);
+
+            if (!String.IsNullOrEmpty(_MultiSearchVM.q))
+            {
+                data = data.Where(p => p.ProductName.Contains(_MultiSearchVM.q));
+            }
+
+            data = data.Where(p => p.Stock > _MultiSearchVM.Stock_S && p.Stock < _MultiSearchVM.Stock_E);
+
+            ViewData.Model = data
+                .Select(p => new productLiteVM()
+                {
+                    ProductId = p.ProductId,
+                    ProductName = p.ProductName,
+                    Price = p.Price,
+                    Stock = p.Stock
+                });
+
+            return View();
+            //var data = repo.GetProduct列表頁所有資料(Active :true)
+            //   .Select(p => new productLiteVM
+            //   {
+            //       ProductId = p.ProductId,
+            //       ProductName = p.ProductName,
+            //       Price = p.Price,
+            //       Stock = p.Stock
+            //   });
+            //return View(data);
 
             //var data = db.Product.Where(p => p.Active == true)
             //    .Select(p => new productLiteVM

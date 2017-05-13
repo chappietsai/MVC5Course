@@ -1,8 +1,19 @@
 ﻿@model IEnumerable<MVC5Course.Models.ViewModels.productLiteVM>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+<h2>ListProducts</h2>
+
+<form method="get">
+    productname:
+    @Html.TextBox("q")
+    Stock_S:
+    @Html.TextBox("Stock_S")
+
+    Stock_E:
+    @Html.TextBox("Stock_E")
+    <button>搜尋</button>
+
+</form>
+
 <table class="table">
     <tr>
         <th>
@@ -21,23 +32,24 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.ProductId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ProductName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Price)
-        </td>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
 
-        <td>
-            @Html.DisplayFor(modelItem => item.Stock)
-        </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Stock)
+            </td>
 
-    </tr>
-}
+        </tr>
+    }
 
 </table>
