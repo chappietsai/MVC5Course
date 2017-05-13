@@ -17,5 +17,10 @@ namespace MVC5Course.Controllers
             return View("Hello");
         }
 
+
+        //protected override void HandleUnknownAction(string actionName)
+        //{
+        //    //導到妳要的首頁
+        //}
     }
 }
