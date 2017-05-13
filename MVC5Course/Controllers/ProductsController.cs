@@ -11,10 +11,10 @@ using MVC5Course.Models.ViewModels;
 
 namespace MVC5Course.Controllers
 {
-    public class ProductsController : Controller
+    public class ProductsController : BaseController
     {
 
-        ProductRepository repo = RepositoryHelper.GetProductRepository();
+   
 
         //private FabricsEntities1 db = new FabricsEntities1();
 
