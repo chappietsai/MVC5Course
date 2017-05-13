@@ -26,7 +26,8 @@ namespace MVC5Course.Controllers
             //repository.UnitOfWork = GetUnitOfWork();
             //ProductRepository repo = RepositoryHelper.GetProductRepository();如同上面兩行
 
-            var data = repo.All();
+            //var data = repo.All();
+            var data = repo.GetProduct列表頁所有資料(Active, showAll: false);
             //var data = db.Product.Where(p => p.Active.HasValue && p.Active.Value == Active).OrderByDescending(p => p.ProductId).Take(10);
             return View(data);
         }
