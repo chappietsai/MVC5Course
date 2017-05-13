@@ -13,7 +13,11 @@ namespace MVC5Course.Controllers
             return View();
         }
 
+        public ActionResult SomeAction()
+        {
 
+            return PartialView("SuccessRedirect","/");
+        }
 
         public ActionResult PartialAbout()
         {//可在console $.get('/Home/PartialAbout',function(data){alert(data)})
