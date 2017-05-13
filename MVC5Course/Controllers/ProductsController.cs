@@ -29,7 +29,10 @@ namespace MVC5Course.Controllers
             //var data = repo.All();
             var data = repo.GetProduct列表頁所有資料(Active, showAll: false);
             //var data = db.Product.Where(p => p.Active.HasValue && p.Active.Value == Active).OrderByDescending(p => p.ProductId).Take(10);
-            return View(data);
+
+            //return View(data);
+            ViewData.Model = data; //與上方相同
+            return View();
         }
 
         // GET: Products/Details/5
@@ -181,9 +184,9 @@ namespace MVC5Course.Controllers
 
             if (ModelState.IsValid)
             {
+                TempData["showData"] = "新增成功";
+
                //儲存資料進資料庫
-
-
                 return RedirectToAction("ListProducts");
             }
             //驗證失敗

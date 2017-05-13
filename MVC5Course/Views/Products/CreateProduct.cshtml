@@ -1,5 +1,10 @@
 ﻿@model MVC5Course.Models.ViewModels.productLiteVM
 
+@if (TempData["showData"]!=null)
+    {
+        <h2>@TempData["showData"]</h2>
+    }
+
 
 @using (Html.BeginForm()) 
 {

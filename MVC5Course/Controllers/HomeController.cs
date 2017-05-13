@@ -73,6 +73,7 @@ namespace MVC5Course.Controllers
         {
             db.Configuration.LazyLoadingEnabled = false;//close lazy loadinig
             return Json(db.Product.Take(10),JsonRequestBehavior.AllowGet);//Json 預設不能用Get 所以要加JsonRequestBehavior.AllowGet
+            
         }
 
 
