@@ -60,6 +60,10 @@ namespace MVC5Course.Controllers
             return View();
         }
 
-
+        public ActionResult GetFile()
+        {
+            //return File(Server.MapPath("~/Content/ABC.png"),"image/png");
+            return File(Server.MapPath("~/Content/ABC.png"), "image/png","New.png");//強迫下載
+        }
     }
 }
