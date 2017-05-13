@@ -13,10 +13,34 @@ namespace MVC5Course.Controllers
             return View();
         }
 
+
+
+        public ActionResult PartialAbout()
+        {//可在console $.get('/Home/PartialAbout',function(data){alert(data)})
+            ViewBag.Message = "Your application description page.";
+
+            if (Request.IsAjaxRequest())//check Ajax
+            {
+                return PartialView("About");
+            }else
+            {
+
+                return View("About");
+            }
+
+            
+        }
+
+
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
 
+            return View();
+        }
+
+        public ActionResult unknow()
+        {
             return View();
         }
 
