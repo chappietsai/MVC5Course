@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using MVC5Course.Models;
 using MVC5Course.Models.ViewModels;
+using System.Data.Entity.Infrastructure;
 
 namespace MVC5Course.Controllers
 {
@@ -64,6 +65,7 @@ namespace MVC5Course.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [HandleError(ExceptionType = typeof(DbUpdateException), View = "Error_DbUpdateException")]
         public ActionResult Create([Bind(Include = "ProductId,ProductName,Price,Active,Stock")] Product product)
         {
             if (ModelState.IsValid)
