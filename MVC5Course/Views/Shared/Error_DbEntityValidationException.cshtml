@@ -6,24 +6,25 @@
 }
 
 <h1 class="text-danger">/@Model.ControllerName/@Model.ActionName 實體模型驗證失敗!</h1>
-
-    @ex.Message
-
-    <ol>
+<h2 class="text-danger">
+    <ul>
         @foreach (var entity in ex.EntityValidationErrors)
         {
-            foreach (var error in entity.ValidationErrors)
-            {
-                <li>
-                    @error.PropertyName
-                    <ul>
+            <li>
+                實體模型: @entity.Entry.Entity.GetType().Name<br />
+                <br />
+                <ol>
+                    @foreach (var error in entity.ValidationErrors)
+                    {
                         <li>
-                            @error.ErrorMessage
+                            屬性名稱: @error.PropertyName<br />
+                            錯誤訊息: @error.ErrorMessage<br />
+                            <br />
                         </li>
-                    </ul>
-                </li>
-            }
+                    }
+                </ol>
+            </li>
         }
+    </ul>
 
-    </ol>
-
+</h2>
