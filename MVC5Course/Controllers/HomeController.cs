@@ -37,7 +37,7 @@ namespace MVC5Course.Controllers
 
             
         }
-
+        [LocalOnly]
         [SharedViewBag]///用於做trace log 好用
         public ActionResult About()
         {

@@ -11,7 +11,7 @@ namespace MVC5Course.Controllers
     {
         //宣告protected 所有繼承class 才都能用，不加的話 預設private
         protected ProductRepository repo = RepositoryHelper.GetProductRepository();
-
+        [LocalOnly]
         public ActionResult Debug()
         {
             return View("Hello");

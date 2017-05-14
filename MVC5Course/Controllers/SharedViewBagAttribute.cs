@@ -10,7 +10,7 @@ namespace MVC5Course.Controllers
         {
             filterContext.Controller.ViewBag.Message= "Your application description page. -->chappie";
 
-            base.OnActionExecuting(filterContext);
+           
         }
         //OnActionExecuted -->Action 執行之後
         public override void OnActionExecuted(ActionExecutedContext filterContext)
