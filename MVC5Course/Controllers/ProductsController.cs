@@ -20,6 +20,7 @@ namespace MVC5Course.Controllers
 
         // GET: Products
         //[OutputCache(XXXX)]--->可以提升效能 但不要寫在更人化介面 不然會有A登入 看到B得資料
+        //[OutputCache(Duration =300,Location = XXX)]
         public ActionResult Index(bool Active = true)
         {
 

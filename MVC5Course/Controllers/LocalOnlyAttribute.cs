@@ -10,7 +10,7 @@ namespace MVC5Course.Controllers
         {
             if (filterContext.HttpContext.Request.IsLocal)
             {
-                 filterContext.Result = new RedirectResult("/");//直接 filterContext.Result 這樣會直接跳過Action
+                 //filterContext.Result = new RedirectResult("/");//直接 filterContext.Result 這樣會直接跳過Action
             }
 
         }
