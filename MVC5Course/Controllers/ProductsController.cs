@@ -94,20 +94,40 @@ namespace MVC5Course.Controllers
         // POST: Products/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Edit([Bind(Include = "ProductId,ProductName,Price,Active,Stock")] Product product)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        //db.Entry(product).State = EntityState.Modified;
+        //        //db.SaveChanges();
+        //        repo.Update(product);
+        //        repo.UnitOfWork.Commit();
+        //        return RedirectToAction("Index");
+        //    }
+        //    return View(product);
+        //}
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ProductId,ProductName,Price,Active,Stock")] Product product)
+        public ActionResult Edit(int id,FormCollection from)//FormCollection from -->用不到 為了不跟前面一樣
         {
-            if (ModelState.IsValid)
+
+            var product = repo.Get單筆資料ByProductId(id);
+            
+
+            if (TryUpdateModel(product,
+                new string[] { "ProductId", "ProductName", "Price", "Active", "Stock" } ))//指定這些欄位要做modelbinding 避免user 變更
             {
-                //db.Entry(product).State = EntityState.Modified;
-                //db.SaveChanges();
-                repo.Update(product);
+           
+                //repo.Update(product);
                 repo.UnitOfWork.Commit();
                 return RedirectToAction("Index");
             }
             return View(product);
         }
+
 
         // GET: Products/Delete/5
         public ActionResult Delete(int? id)
@@ -155,10 +175,15 @@ namespace MVC5Course.Controllers
 
             var data = repo.GetProduct列表頁所有資料(true);
 
-            if (!String.IsNullOrEmpty(_MultiSearchVM.q))
+            //if (!String.IsNullOrEmpty(_MultiSearchVM.q))
+            //{
+            //    data = data.Where(p => p.ProductName.Contains(_MultiSearchVM.q));
+            //}
+
+            if (ModelState.IsValid)
             {
                 data = data.Where(p => p.ProductName.Contains(_MultiSearchVM.q));
-            }
+             }
 
             data = data.Where(p => p.Stock > _MultiSearchVM.Stock_S && p.Stock < _MultiSearchVM.Stock_E);
 
