@@ -19,6 +19,7 @@ namespace MVC5Course.Controllers
         //private FabricsEntities1 db = new FabricsEntities1();
 
         // GET: Products
+        //[OutputCache(XXXX)]--->可以提升效能 但不要寫在更人化介面 不然會有A登入 看到B得資料
         public ActionResult Index(bool Active = true)
         {
 
