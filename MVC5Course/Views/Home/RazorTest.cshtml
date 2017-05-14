@@ -1,0 +1,19 @@
+﻿@model int[]
+
+
+@foreach (var i in ViewData.Model)
+{
+    @i
+}
+
+@foreach (var i in ViewData.Model)
+{
+    @(i+" ")
+}
+<ul>
+    @foreach (var i in ViewData.Model)
+    {
+        <li>@i</li> 
+    }
+</ul>
+

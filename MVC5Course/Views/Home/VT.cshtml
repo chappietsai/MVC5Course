@@ -1,0 +1,14 @@
+﻿@{ 
+    Layout = "";//不套用主板頁面
+}
+
+@DateTime.Now
+
+@if (ViewBag.IsEnable)
+{
+    @:Start
+}
+else
+{
+    @:Close
+}
