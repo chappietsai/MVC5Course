@@ -38,10 +38,10 @@ namespace MVC5Course.Controllers
             
         }
 
-
+        [SharedViewBag]///用於做trace log 好用
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+            
 
             return View();
         }
