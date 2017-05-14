@@ -2,6 +2,12 @@
 @section breadcrumb{
 <li><a href="@Url.Action("Tasks", "Metro")">Tasks</a></li>
 }
+@if (IsAjax)
+{
+    Layout = "";
+}
+
+
 <div class="span7">
     <h1>Tasks</h1>
 
