@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using MVC5Course.Models;
 using MVC5Course.Models.ViewModels;
 using System.Data.Entity.Infrastructure;
+using System.Data.Entity.Validation;
 
 namespace MVC5Course.Controllers
 {
@@ -66,9 +67,10 @@ namespace MVC5Course.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [HandleError(ExceptionType = typeof(DbUpdateException), View = "Error_DbUpdateException")]
+        [HandleError(ExceptionType =typeof(DbEntityValidationException), View="Error_DbEntityValidationException")]
         public ActionResult Create([Bind(Include = "ProductId,ProductName,Price,Active,Stock")] Product product)
         {
-            if (ModelState.IsValid)
+            //if (ModelState.IsValid)
             {
                 //db.Product.Add(product);
                 //db.SaveChanges();
